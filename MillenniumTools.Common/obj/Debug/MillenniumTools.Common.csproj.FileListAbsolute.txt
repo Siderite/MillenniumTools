@@ -1,0 +1,14 @@
+C:\Projects\MillenniumTools\MillenniumTools.Common\bin\Debug\MillenniumTools.Common.dll
+C:\Projects\MillenniumTools\MillenniumTools.Common\bin\Debug\MillenniumTools.Common.pdb
+C:\Projects\MillenniumTools\MillenniumTools.Common\bin\Debug\it-IT\MillenniumTools.Common.resources.dll
+C:\Projects\MillenniumTools\MillenniumTools.Common\bin\Debug\BS.Utilities.dll
+C:\Projects\MillenniumTools\MillenniumTools.Common\bin\Debug\log4net.dll
+C:\Projects\MillenniumTools\MillenniumTools.Common\bin\Debug\BS.Utilities.pdb
+C:\Projects\MillenniumTools\MillenniumTools.Common\bin\Debug\log4net.xml
+C:\Projects\MillenniumTools\MillenniumTools.Common\obj\Debug\MillenniumTools.Common.csprojResolveAssemblyReference.cache
+C:\Projects\MillenniumTools\MillenniumTools.Common\obj\Debug\MillenniumTools.Common.Resource.resources
+C:\Projects\MillenniumTools\MillenniumTools.Common\obj\Debug\MillenniumTools.Common.Resource.it-IT.resources
+C:\Projects\MillenniumTools\MillenniumTools.Common\obj\Debug\MillenniumTools.Common.csproj.GenerateResource.Cache
+C:\Projects\MillenniumTools\MillenniumTools.Common\obj\Debug\it-IT\MillenniumTools.Common.resources.dll
+C:\Projects\MillenniumTools\MillenniumTools.Common\obj\Debug\MillenniumTools.Common.dll
+C:\Projects\MillenniumTools\MillenniumTools.Common\obj\Debug\MillenniumTools.Common.pdb

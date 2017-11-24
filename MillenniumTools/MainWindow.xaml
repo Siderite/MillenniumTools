@@ -1,0 +1,410 @@
+﻿<Window x:Class="MillenniumTools.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:MillenniumTools"
+        xmlns:common="clr-namespace:MillenniumTools.Common;assembly=MillenniumTools.Common"
+        Title="Millennium Residence Network Monitor" WindowState="Maximized" Icon="Millennium.png"
+        WindowStartupLocation="CenterScreen"
+        MinHeight="450" MinWidth="1024">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding ReloadCommand}" Gesture="F5" />
+        <KeyBinding Command="{Binding EscapeCommand}" Gesture="Esc" />
+    </Window.InputBindings>
+    <Window.Resources>
+        <local:NetworkAccessibilityConverter x:Key="NetworkAccessibilityConverter"/>
+        <local:TextToBrushConverter x:Key="TextToBrushConverter"/>
+        <local:ResizeConverter x:Key="ResizeConverter"/>
+        <local:VolumeConverter x:Key="VolumeConverter"/>
+        <local:BezierConverter x:Key="BezierConverter"/>
+        <Style TargetType="{x:Type CheckBox}" x:Key="GraphicalCheckbox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Rectangle Width="20" Height="20" Stroke="Black" Fill="Salmon" Name="Rect"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Fill" Value="Lime" TargetName="Rect"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid HorizontalAlignment="Stretch" Grid.Row="0"  Background="Wheat">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="9*" />
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" HorizontalAlignment="Left" Content="{x:Static common:Resource.IPHeader}" />
+                <Label Grid.Column="1" HorizontalAlignment="Center" Content="{x:Static common:Resource.DirectAccessHeader}" />
+                <Label Grid.Column="2" HorizontalAlignment="Center" Content="{x:Static common:Resource.HTTPAccessHeader}" />
+                <Label Grid.Column="3" HorizontalAlignment="Center" Content="{x:Static common:Resource.AuthenticatedHeader}" />
+                <Label Grid.Column="4" HorizontalAlignment="Center" Content="{x:Static common:Resource.RunningHeader}" />
+                <Label Grid.Column="5" HorizontalAlignment="Center" Content="{x:Static common:Resource.ReceiveSpeedHeader}" />
+                <Label Grid.Column="6" HorizontalAlignment="Center" Content="{x:Static common:Resource.TransmitSpeedHeader}" />
+                <Label Grid.Column="7" HorizontalAlignment="Center" Content="{x:Static common:Resource.UpTimeHeader}" />
+                <Label Grid.Column="8" HorizontalAlignment="Center" Content="{x:Static common:Resource.AvailabilityHeader}" />
+                <Label Grid.Column="9" HorizontalAlignment="Center" Content="{x:Static common:Resource.RebootDeviceHeader}" />
+            </Grid>
+            <ListView  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="lvItems" 
+                   HorizontalContentAlignment="Stretch"
+                   ItemsSource="{Binding Devices}" 
+                   Grid.Row="1" 
+                   SelectionMode="Single"
+                   SelectedItem="{Binding SelectedDevice}"
+                  >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ToggleButton IsChecked="{Binding 
+                          RelativeSource={RelativeSource FindAncestor, 
+                          AncestorType={x:Type ListBoxItem}},
+                          Path=IsSelected}">
+                            <ToggleButton.Template>
+                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                            <Grid Height="30" HorizontalAlignment="Stretch" Opacity="0.8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="9*" />
+                                    <ColumnDefinition Width="9*"  />
+                                    <ColumnDefinition Width="9*"  />
+                                    <ColumnDefinition Width="9*"  />
+                                    <ColumnDefinition Width="9*"  />
+                                    <ColumnDefinition Width="9*"  />
+                                    <ColumnDefinition Width="9*"  />
+                                    <ColumnDefinition Width="9*"  />
+                                    <ColumnDefinition Width="9*"  />
+                                    <ColumnDefinition Width="1*"  />
+                                    <ColumnDefinition Width="9*"  />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25 0 0 0" Text="{Binding Ip}"/>
+                                <Border  Grid.Column="0" CornerRadius="9" Width="18" Height="18" Background="Red" HorizontalAlignment="Left">
+                                    <Border.Style>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Type}" Value="Reference">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding CouldNotDetermineIp}" Value="False">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <TextBlock Text="!" ToolTip="{x:Static common:Resource.CouldNotDetermineIpText}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Foreground="White">
+                                    </TextBlock>
+                                </Border>
+                                <Border  Grid.Column="0" CornerRadius="9" Width="18" Height="18" Background="Transparent" HorizontalAlignment="Left" BorderBrush="Red" BorderThickness="1">
+                                    <Border.Style>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SoundingAlarm}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <TextBlock Text="X" 
+                                               ToolTip="{x:Static common:Resource.DeviceAlarmText}"
+                                               FontFamily="Webdings"
+                                               FontSize="16"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Foreground="Black"/>
+                                </Border>
+                                <CheckBox Grid.Column="1" HorizontalAlignment="Center" IsChecked="{Binding IsNetworkAccessible,Mode=OneWay}" IsEnabled="False" Style="{StaticResource GraphicalCheckbox}"/>
+                                <CheckBox Grid.Column="2" HorizontalAlignment="Center" IsChecked="{Binding IsHttpAccessible,Mode=OneWay}" IsEnabled="False" Style="{StaticResource GraphicalCheckbox}"/>
+                                <CheckBox Grid.Column="3" HorizontalAlignment="Center" IsChecked="{Binding IsAuthenticated,Mode=OneWay}" IsEnabled="False" Style="{StaticResource GraphicalCheckbox}"/>
+                                <CheckBox Grid.Column="4" HorizontalAlignment="Center" IsChecked="{Binding IsActive,Mode=OneWay}" IsEnabled="False" Style="{StaticResource GraphicalCheckbox}"/>
+                                <TextBlock Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding RxSpeed}"/>
+                                <TextBlock Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding TxSpeed}"/>
+                                <TextBlock Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding UpTime}"/>
+                                <TextBlock Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding NetworkAvailability, StringFormat=N2}"/>
+                                <Border  Grid.Column="9" CornerRadius="9" Width="18" Height="18" Background="Red">
+                                    <Border.Style>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Type}" Value="Router">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=DataContext.RouterShouldBeRestarted, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" Value="0">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <TextBlock Text="{Binding Path=DataContext.RouterShouldBeRestarted, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Foreground="White">
+                                        <TextBlock.ToolTip>
+                                            <ToolTip Content="{Binding RestartRouterCount,Source={x:Static common:Config.Instance}}" ContentStringFormat="{x:Static common:Resource.RouterShouldBeRestartedText}"/>
+                                        </TextBlock.ToolTip>
+                                    </TextBlock>
+                                </Border>
+                                <Button Grid.Column="10" HorizontalAlignment="Stretch" Command="{Binding RebootCommand}">
+                                    <Button.ToolTip>
+                                        <ToolTip>
+                                            <ToolTip.Style>
+                                                <Style TargetType="{x:Type ToolTip}">
+                                                    <Setter Property="Content" Value="{Binding MaximumDeviceAgeInHours,Source={x:Static common:Config.Instance}}"/>
+                                                    <Setter Property="ContentStringFormat" Value="{x:Static common:Resource.ExtenderRebootText}"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Type}" Value="Router">
+                                                            <Setter Property="Content" Value="{x:Static common:Resource.ResetsWifiText}"/>
+                                                            <Setter Property="ContentStringFormat" Value="{x:Null}"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </ToolTip.Style>
+                                        </ToolTip>
+                                    </Button.ToolTip>
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RebootCommand}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                    <TextBlock Text="{x:Static common:Resource.RebootText}"/>
+                                </Button>
+                                <Grid.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Setter Property="Background" Value="{Binding NetworkAvailability,Converter={StaticResource NetworkAccessibilityConverter}}"/>
+                                        <Style.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding IsLoading}" Value="False"/>
+                                                    <Condition Binding="{Binding IsActive}" Value="False"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <MultiDataTrigger.Setters>
+                                                    <Setter Property="Background" Value="LightYellow"/>
+                                                </MultiDataTrigger.Setters>
+                                            </MultiDataTrigger>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding IsLoading}" Value="False"/>
+                                                    <Condition Binding="{Binding IsAuthenticated}" Value="False"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <MultiDataTrigger.Setters>
+                                                    <Setter Property="Background" Value="Red"/>
+                                                </MultiDataTrigger.Setters>
+                                            </MultiDataTrigger>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding IsLoading}" Value="True"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <MultiDataTrigger.Setters>
+                                                    <Setter Property="Background" Value="LightGray"/>
+                                                </MultiDataTrigger.Setters>
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                            </Grid>
+                        </ToggleButton>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="Opacity" Value="0.8"/>
+                        <Style.Triggers>
+                            <Trigger Property="Selector.IsSelected" Value="True">
+                                <Setter Property="TextElement.FontWeight" Value="Bold"/>
+                                <Setter Property="Background" Value="Blue"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+            <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch">
+                <Grid>
+                    <Canvas Name="GraphLinesCanvas"/>
+                    <Canvas Name="GraphStatics">
+                        <TextBlock Text="{Binding MaxRoundtrip,StringFormat={}{0}ms}"
+                                       Foreground="Black"
+                                       FontSize="20"
+                                       FontWeight="SemiBold"
+                               Canvas.Left="10"
+                               Canvas.Top="10"/>
+                        <TextBlock Text="{Binding MaxSpeed,StringFormat={}{0:N0}KBps}"
+                                       Foreground="Black"
+                                       FontSize="20"
+                                       FontWeight="SemiBold"
+                               Canvas.Left="10"
+                               Canvas.Top="30"/>
+                        <ItemsControl ItemsSource="{Binding Devices}" Canvas.Right="10" Canvas.Top="10" >
+                            <ItemsControl.Resources>
+                                <DataTemplate DataType="{x:Type local:DeviceModel}">
+                                    <TextBlock Text="{Binding Ip}"
+                                       Foreground="{Binding Ip, Converter={StaticResource TextToBrushConverter}}"
+                                       FontSize="20"
+                                       FontWeight="SemiBold"
+                                       Canvas.Left="200"
+                                       Canvas.Top="100"/>
+                                </DataTemplate>
+                            </ItemsControl.Resources>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+
+                    </Canvas>
+                </Grid>
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="Opacity" Value="0.2"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedDevice}" Value="{x:Null}">
+                                <Setter Property="Opacity" Value="1"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+            <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch">
+                <ItemsControl ItemsSource="{Binding SelectedDevice.Users}" HorizontalAlignment="Stretch"  Margin="50">
+                    <ItemsControl.Resources>
+                        <DataTemplate DataType="{x:Type local:DeviceModel+UserInfo}">
+                            <Grid HorizontalAlignment="Stretch" Background="Transparent" TextElement.FontSize="15" TextElement.Foreground="DarkGreen">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Name}" Grid.Column="0"/>
+                                <TextBlock Text="{Binding Ip}" Grid.Column="1"/>
+                                <TextBlock Text="{Binding MacAddress}" Grid.Column="2"/>
+                                <TextBlock Text="{Binding PacketsRx}" Grid.Column="3"/>
+                                <TextBlock Text="{Binding PacketsTx}" Grid.Column="4"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.Resources>
+                </ItemsControl>
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedDevice}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+
+            <DockPanel Grid.Row="3" >
+                <DockPanel.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Padding" Value="10"/>
+                        <Setter Property="Margin" Value="10 0 0 0"/>
+                    </Style>
+                </DockPanel.Resources>
+                <Button Click="ShowConfig" DockPanel.Dock="Left" ToolTip="{x:Static common:Resource.ConfigureTooltip}" Content="{x:Static common:Resource.ConfigureText}"/>
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <MediaElement x:Name="mediaElement" Source="alarm.mp3" LoadedBehavior="Manual"
+                                  IsMuted="{Binding IsMuted}"
+                                  Volume="{Binding AlarmVolume,Converter={StaticResource VolumeConverter}}"
+                                  />
+                    <CheckBox ToolTip="{x:Static common:Resource.StartWithWindowsTooltip}" FlowDirection="RightToLeft"
+                    VerticalAlignment="Center" IsChecked="{Binding StartWithWindows}" IsThreeState="False" Content="{x:Static common:Resource.StartWithWindowsText}"/>
+                    <Button VerticalAlignment="Center" Command="{Binding ResetPingsCommand}" Margin="20 0"
+                        ToolTip="{x:Static common:Resource.ClearPingsTooltip}"
+                        Content="{x:Static common:Resource.ClearPingsText}"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <StackPanel.Style>
+                            <Style TargetType="{x:Type FrameworkElement}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding DeviceAlarmThreshold,Source={x:Static common:Config.Instance}}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <ToggleButton IsChecked="{Binding IsMuted}" VerticalAlignment="Center">
+                            <ToggleButton.Resources>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsMuted}" Value="True">
+                                            <Setter Property="TextBlock.TextDecorations" Value="Strikethrough"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                <ContentPresenter/>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ToggleButton.Resources>
+                            <TextBlock Text="{x:Static common:Resource.AlarmVolumeText}"/>
+                        </ToggleButton>
+                        <Slider Orientation="Horizontal" Width="200" Margin="10,0,100,0"
+                            Minimum="0" Maximum="100"
+                            Value="{Binding AlarmVolume}" />
+                    </StackPanel>
+                    <Button Command="{Binding RestartRouterCommand}" ToolTip="{x:Static common:Resource.RestartRouterTooltip}" Content="{x:Static common:Resource.RestartRouterText}"/>
+                    <Button Command="{Binding ReloadCommand}" Content="{x:Static common:Resource.ReloadCommandText}">
+                        <Button.ToolTip>
+                            <ToolTip Content="{Binding ReloadIntervalInMinutes, Source={x:Static common:Config.Instance}}" ContentStringFormat="{x:Static common:Resource.ReloadText}"/>
+                        </Button.ToolTip>
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#C0000000">
+            <Grid.Style>
+                <Style TargetType="{x:Type Grid}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ConfigError}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <TextBlock Text="{Binding ConfigError}" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       TextWrapping="Wrap" Margin="50"/>
+        </Grid>
+    </Grid>
+</Window>

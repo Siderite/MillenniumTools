@@ -1,0 +1,7 @@
+C:\Projects\MillenniumTools\Ping\bin\Debug\BS.Utilities.dll
+C:\Projects\MillenniumTools\Ping\bin\Debug\BS.Utilities.pdb
+C:\Projects\MillenniumTools\Ping\obj\Debug\Ping.csprojResolveAssemblyReference.cache
+C:\Projects\MillenniumTools\Ping\obj\Debug\BS.Utilities.Ping.resources
+C:\Projects\MillenniumTools\Ping\obj\Debug\Ping.csproj.GenerateResource.Cache
+C:\Projects\MillenniumTools\Ping\obj\Debug\BS.Utilities.dll
+C:\Projects\MillenniumTools\Ping\obj\Debug\BS.Utilities.pdb

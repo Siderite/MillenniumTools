@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AlarmVolumeText" xml:space="preserve">
+    <value>Alarm Volume:</value>
+  </data>
+  <data name="AuthenticatedHeader" xml:space="preserve">
+    <value>Authenticated</value>
+  </data>
+  <data name="AvailabilityHeader" xml:space="preserve">
+    <value>Availability</value>
+  </data>
+  <data name="ClearPingsText" xml:space="preserve">
+    <value>Clear Pings</value>
+  </data>
+  <data name="ClearPingsTooltip" xml:space="preserve">
+    <value>Clear ping values, thus stopping alarms and clearing the chart</value>
+  </data>
+  <data name="ConfigureText" xml:space="preserve">
+    <value>Configure</value>
+  </data>
+  <data name="ConfigureTooltip" xml:space="preserve">
+    <value>Change configuration</value>
+  </data>
+  <data name="DirectAccessHeader" xml:space="preserve">
+    <value>Direct Access</value>
+  </data>
+  <data name="ExtenderRebootText" xml:space="preserve">
+    <value>Reset device - this will be done automatically when up time is larger than {0:0.##} hours</value>
+  </data>
+  <data name="HTTPAccessHeader" xml:space="preserve">
+    <value>HTTP Access</value>
+  </data>
+  <data name="IPHeader" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="RebootDeviceHeader" xml:space="preserve">
+    <value>Reboot Device</value>
+  </data>
+  <data name="RebootText" xml:space="preserve">
+    <value>Reboot</value>
+  </data>
+  <data name="ReceiveSpeedHeader" xml:space="preserve">
+    <value>Receive Speed</value>
+  </data>
+  <data name="ReloadCommandText" xml:space="preserve">
+    <value>Refresh list (F5)</value>
+  </data>
+  <data name="ReloadText" xml:space="preserve">
+    <value>Refresh device list and related information - this occurs automatically every {0:0.##} minutes</value>
+  </data>
+  <data name="ResetsDeviceText" xml:space="preserve">
+    <value>Resets the device</value>
+  </data>
+  <data name="ResetsWifiText" xml:space="preserve">
+    <value>Reset router Wi-fi - this takes about 10 seconds</value>
+  </data>
+  <data name="RestartRouterText" xml:space="preserve">
+    <value>Restart Router</value>
+  </data>
+  <data name="RestartRouterTooltip" xml:space="preserve">
+    <value>Restart router - this will take approximately 4 minutes</value>
+  </data>
+  <data name="RouterShouldBeRestartedText" xml:space="preserve">
+    <value>Number of times when availability was below configured level. After it reaches {0}, the router will automatically reset the Wi-Fi, if possible.</value>
+  </data>
+  <data name="RunningHeader" xml:space="preserve">
+    <value>Running</value>
+  </data>
+  <data name="StartWithWindowsText" xml:space="preserve">
+    <value>Start with Windows</value>
+  </data>
+  <data name="StartWithWindowsTooltip" xml:space="preserve">
+    <value>If set, MillenniumTools will start at boot time</value>
+  </data>
+  <data name="TransmitSpeedHeader" xml:space="preserve">
+    <value>Transmit Speed</value>
+  </data>
+  <data name="UpTimeHeader" xml:space="preserve">
+    <value>Up Time</value>
+  </data>
+  <data name="RouterIPConfigProperty" xml:space="preserve">
+    <value>The IP Address of the router</value>
+  </data>
+  <data name="ExtenderIPsConfigProperty" xml:space="preserve">
+    <value>The IP Addresses of the extenders, comma separated. Make sure the extenders have a static IP address configured.</value>
+  </data>
+  <data name="ClientTimeoutConfigProperty" xml:space="preserve">
+    <value>Timeout for connecting to web interfaces.</value>
+  </data>
+  <data name="UserAgentConfigProperty" xml:space="preserve">
+    <value>The browser declared when connecting to web interfaces</value>
+  </data>
+  <data name="RouterUsernameConfigProperty" xml:space="preserve">
+    <value>The router interface username</value>
+  </data>
+  <data name="RouterPasswordConfigProperty" xml:space="preserve">
+    <value>The router interface password</value>
+  </data>
+  <data name="ExtenderUsernameConfigProperty" xml:space="preserve">
+    <value>The extender interface username. Make sure the same username is configured on all extenders.</value>
+  </data>
+  <data name="ExtenderPasswordConfigProperty" xml:space="preserve">
+    <value>The extender interface password. Make sure the same password is configured on all extenders.</value>
+  </data>
+  <data name="ReloadIntervalConfigProperty" xml:space="preserve">
+    <value>Time in which to automatically refresh the status of the devices on the network (format days.hours:minutes:seconds)</value>
+  </data>
+  <data name="PingIntervalConfigProperty" xml:space="preserve">
+    <value>Time in which the devices are being pinged to check availability and refresh the chart (format days.hours:minutes:seconds)</value>
+  </data>
+  <data name="PingTimeoutConfigProperty" xml:space="preserve">
+    <value>Timeout of ping requests (format days.hours:minutes:seconds)</value>
+  </data>
+  <data name="PingGraphTimeSizeConfigProperty" xml:space="preserve">
+    <value>The time interval covered by the ping chart (format days.hours:minutes:seconds)</value>
+  </data>
+  <data name="SmoothnessConfigProperty" xml:space="preserve">
+    <value>The smoothness of the chart. Value from 0.0 to 1.0</value>
+  </data>
+  <data name="MaxPingsInMemoryConfigProperty" xml:space="preserve">
+    <value>Maximum ping information to keep in memory. The ping information is used to draw the chart.</value>
+  </data>
+  <data name="ReferenceIPsConfigProperty" xml:space="preserve">
+    <value>A list of hosts or IP addresses to ping for reference (for example google.com and the first hop towards the Internet). This helps to understand the status of the external network.</value>
+  </data>
+  <data name="PingEntireSubnetIntervalConfigProperty" xml:space="preserve">
+    <value>If GetAdditionalNetworkInfo is set, this is the time in which every machine on the subnet is being pinged. It helps with the correlation between MAC address and IP address</value>
+  </data>
+  <data name="GetAdditionalNetworkInfoConfigProperty" xml:space="preserve">
+    <value>If this is set to true, more expensive network operations could be performed to gather more information.</value>
+  </data>
+  <data name="UseStandardPingConfigProperty" xml:space="preserve">
+    <value>Set this to true to use the standard Ping class.</value>
+  </data>
+  <data name="ShowPingWarningsOnChartConfigProperty" xml:space="preserve">
+    <value>Set to true in order to see ! warnings on the chart when ping fails</value>
+  </data>
+  <data name="RestartRouterWifiThresholdConfigProperty" xml:space="preserve">
+    <value>Percentage of availability under which the router Wi-fi will be reset (0 means never)</value>
+  </data>
+  <data name="RestartRouterCountConfigProperty" xml:space="preserve">
+    <value>How many times the router must be under the wifi threshold before it restarts (0 means never)</value>
+  </data>
+  <data name="DeviceAlarmThresholdConfigProperty" xml:space="preserve">
+    <value>Percentage of availability under which a device will cause a sound beep to be sounded (0 means never)</value>
+  </data>
+  <data name="AlarmSoundVolumeConfigProperty" xml:space="preserve">
+    <value>Alarm sound volume (0-100)</value>
+  </data>
+  <data name="IsMutedConfigProperty" xml:space="preserve">
+    <value>If set, the alarm will not sound</value>
+  </data>
+  <data name="MaximumDeviceAgeConfigProperty" xml:space="preserve">
+    <value>The maximum time interval before a device is restarted (format days.hours:minutes:seconds)</value>
+  </data>
+  <data name="CouldNotDetermineIpText" xml:space="preserve">
+    <value>Could not determine an IP for this address</value>
+  </data>
+  <data name="DeviceAlarmText" xml:space="preserve">
+    <value>Device under configured availability threshold</value>
+  </data>
+  <data name="SpeedGraphTimeSizeConfigProperty" xml:space="preserve">
+    <value>The time interval covered by the speed chart (format days.hours:minutes:seconds)</value>
+  </data>
+  <data name="ConfigurationFileHeader" xml:space="preserve">
+    <value>MillenniumTools configuration file. Created by Siderite (siderite@madnet.ro)</value>
+  </data>
+</root>
